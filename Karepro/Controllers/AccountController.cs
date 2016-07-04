@@ -36,7 +36,8 @@ namespace Karepro.Controllers
             }
             private set 
             { 
-                _signInManager = value; 
+                _signInManager = value;
+                var a = new ApplicationDbContext();
             }
         }
 

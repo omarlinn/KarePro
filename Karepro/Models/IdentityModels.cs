@@ -21,7 +21,7 @@ namespace Karepro.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("KarePro", throwIfV1Schema: false)
         {
         }
 
