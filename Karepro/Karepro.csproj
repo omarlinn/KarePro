@@ -170,19 +170,23 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AveriasController.cs" />
     <Compile Include="Controllers\DepartamentoesController.cs" />
+    <Compile Include="Controllers\EquiposController.cs" />
     <Compile Include="Controllers\InstitucionsController.cs" />
+    <Compile Include="Controllers\InsumosController.cs" />
+    <Compile Include="Controllers\MantenimientosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Averia.cs" />
-    <Compile Include="Models\CreateUserViewModel.cs" />
     <Compile Include="Models\Departamento.cs" />
     <Compile Include="Models\Equipo.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Institucion.cs" />
     <Compile Include="Models\Insumo.cs" />
+    <Compile Include="Models\ManageUsersViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Mantenimiento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -235,6 +239,26 @@
     <Content Include="Views\Departamentoes\Details.cshtml" />
     <Content Include="Views\Departamentoes\Edit.cshtml" />
     <Content Include="Views\Departamentoes\Index.cshtml" />
+    <Content Include="Views\Mantenimientos\Create.cshtml" />
+    <Content Include="Views\Mantenimientos\Delete.cshtml" />
+    <Content Include="Views\Mantenimientos\Details.cshtml" />
+    <Content Include="Views\Mantenimientos\Edit.cshtml" />
+    <Content Include="Views\Mantenimientos\Index.cshtml" />
+    <Content Include="Views\Equipos\Create.cshtml" />
+    <Content Include="Views\Equipos\Delete.cshtml" />
+    <Content Include="Views\Equipos\Details.cshtml" />
+    <Content Include="Views\Equipos\Edit.cshtml" />
+    <Content Include="Views\Equipos\Index.cshtml" />
+    <Content Include="Views\Averias\Create.cshtml" />
+    <Content Include="Views\Averias\Delete.cshtml" />
+    <Content Include="Views\Averias\Details.cshtml" />
+    <Content Include="Views\Averias\Edit.cshtml" />
+    <Content Include="Views\Averias\Index.cshtml" />
+    <Content Include="Views\Insumos\Create.cshtml" />
+    <Content Include="Views\Insumos\Delete.cshtml" />
+    <Content Include="Views\Insumos\Details.cshtml" />
+    <Content Include="Views\Insumos\Edit.cshtml" />
+    <Content Include="Views\Insumos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,64 @@
+﻿@model Karepro.Models.Averia
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Averia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Equipo.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Equipo.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Institucion.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Institucion.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo_averia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo_averia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nivel_urgencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nivel_urgencia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

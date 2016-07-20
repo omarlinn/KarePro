@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Karepro.Models.Mantenimiento>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Averia.Tipo_averia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Institucion.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tipo_mantenimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nivel_urgencia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Averia.Tipo_averia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Institucion.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tipo_mantenimiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nivel_urgencia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdMantenimiento }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdMantenimiento }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdMantenimiento })
+        </td>
+    </tr>
+}
+
+</table>

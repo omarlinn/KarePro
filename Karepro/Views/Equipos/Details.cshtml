@@ -1,0 +1,58 @@
+﻿@model Karepro.Models.Equipo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Equipo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Perio_mantenimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Perio_mantenimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cod_inst)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cod_inst)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdEquipo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
