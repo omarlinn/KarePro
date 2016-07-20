@@ -3,6 +3,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Karepro.Models
 {
@@ -11,6 +13,9 @@ namespace Karepro.Models
     {
         public virtual Institucion Institucion { get; set; }
         public int? idInstitucion { get; set; }
+
+        [Required]
+        public ICollection<Equipo> Equipos { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -73,7 +78,7 @@ namespace Karepro.Models
 
             modelBuilder.Entity<Equipo>()
                         .HasRequired(e => e.Usuario)
-                        .WithMany()
+                        .WithMany(e => e.Equipos)
                         .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Departamento>()
