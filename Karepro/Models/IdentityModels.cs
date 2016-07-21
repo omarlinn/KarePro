@@ -14,7 +14,6 @@ namespace Karepro.Models
         public virtual Institucion Institucion { get; set; }
         public int? idInstitucion { get; set; }
 
-        [Required]
         public ICollection<Equipo> Equipos { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

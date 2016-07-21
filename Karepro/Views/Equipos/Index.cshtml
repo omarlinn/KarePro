@@ -1,15 +1,15 @@
 ﻿@model IEnumerable<Karepro.Models.Equipo>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Equipos";
 }
 
-<h2>Index</h2>
+<h2>Equipos</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Registrar equipo", "Create")
 </p>
-<table class="table">
+<table class="table table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Usuario.Email)
