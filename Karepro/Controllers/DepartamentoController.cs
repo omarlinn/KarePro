@@ -10,7 +10,7 @@ using Karepro.Models;
 
 namespace Karepro.Controllers
 {
-    public class DepartamentoesController : Controller
+    public class DepartamentoController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 

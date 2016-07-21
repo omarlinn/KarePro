@@ -171,7 +171,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AveriasController.cs" />
-    <Compile Include="Controllers\DepartamentoesController.cs" />
+    <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\EquiposController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstitucionsController.cs" />
@@ -235,11 +235,11 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Departamentoes\Create.cshtml" />
-    <Content Include="Views\Departamentoes\Delete.cshtml" />
-    <Content Include="Views\Departamentoes\Details.cshtml" />
-    <Content Include="Views\Departamentoes\Edit.cshtml" />
-    <Content Include="Views\Departamentoes\Index.cshtml" />
+    <Content Include="Views\Departamento\Create.cshtml" />
+    <Content Include="Views\Departamento\Delete.cshtml" />
+    <Content Include="Views\Departamento\Details.cshtml" />
+    <Content Include="Views\Departamento\Edit.cshtml" />
+    <Content Include="Views\Departamento\Index.cshtml" />
     <Content Include="Views\Mantenimientos\Create.cshtml" />
     <Content Include="Views\Mantenimientos\Delete.cshtml" />
     <Content Include="Views\Mantenimientos\Details.cshtml" />
