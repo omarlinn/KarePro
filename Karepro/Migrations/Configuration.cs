@@ -42,12 +42,12 @@ namespace Karepro.Migrations
                 manager.Create(role3);
             }
 
-            if (!context.Users.Any(u => u.UserName == "founder"))
+            if (!context.Users.Any(u => u.UserName == "admin@karepro.com"))
             {
                 var store = new UserStore<ApplicationUser>(context);
                 var manager = new UserManager<ApplicationUser>(store);
                 var user = new ApplicationUser {
-                    UserName = "admin",
+                    UserName = "admin@karepro.com",
                     Email = "admin@karepro.com"
                 };
 
