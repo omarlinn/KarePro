@@ -201,6 +201,7 @@
     <Content Include="Content\cuenta.css" />
     <Content Include="Content\home.css" />
     <Content Include="Content\Img\home-user-icon.png" />
+    <Content Include="Content\Img\karepro-text.png" />
     <Content Include="Content\Img\karepro.png" />
     <Content Include="Content\ionicons.css" />
     <Content Include="Content\Site.css" />

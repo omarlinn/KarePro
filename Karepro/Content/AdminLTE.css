@@ -2579,7 +2579,7 @@ Component: timeline
 */
 /* skin-black navbar */
 .skin-black .navbar {
-  background-color: #ffffff;
+  background-color: #CC3333;
   border-bottom: 1px solid #eee;
 }
 .skin-black .navbar .nav a {
@@ -2598,14 +2598,14 @@ Component: timeline
   margin-right: 10px;
 }
 .skin-black .navbar .sidebar-toggle .icon-bar {
-  background: #333333;
+  background: #FFFFFF;
 }
 .skin-black .navbar .sidebar-toggle:hover .icon-bar {
-  background: #999999 !important;
+  background: #f9f9f9 !important;
 }
 /* skin-black logo */
 .skin-black .logo {
-  background-color: #333333;
+  background-color: #CC3333;
   color: #f9f9f9;
 }
 .skin-black .logo > a {
