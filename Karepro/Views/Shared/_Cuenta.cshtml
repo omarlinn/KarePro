@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/cuenta.css" rel="stylesheet"/>
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <section class="logo">
+        <img src="~/Content/Img/karepro.png" />
+    </section>
+    <section class="content">
+        <article class="form">
+            <h2>INICIAR SESI&Oacute;N</h2>
+            <div id="user">
+                <img src="~/Content/Img/home-user-icon.png" />
+            </div>
+            <div id="form">
+                @RenderBody()
+            </div>
+            <br class="clear" />
+        </article>
+    </section>
+</body>
+</html>
