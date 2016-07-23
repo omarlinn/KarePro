@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Karepro.Models;
+using System.Collections.Generic;
 
 namespace Karepro.Controllers
 {
@@ -17,6 +18,7 @@ namespace Karepro.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public AccountController()
         {
@@ -140,6 +142,16 @@ namespace Karepro.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            
+            //Get the value from database and then set it to ViewBag to pass it View
+            IEnumerable<SelectListItem> items = db.Instituciones.Select(c => new SelectListItem
+            {
+                Value = ""+c.IdInstitucion,
+                Text = c.Nombre
+
+            });
+
+            ViewBag.idInstitucion = items;
             return View();
         }
 
@@ -152,11 +164,18 @@ namespace Karepro.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser {
+                    UserName = model.UserName,
+                    Email = model.Email,
+                    idInstitucion = model.idInstitucion,
+                    Name = model.Name,
+                    LastName = model.LastName
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    UserManager.AddToRole(user.Id, model.Role);
+                    //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
