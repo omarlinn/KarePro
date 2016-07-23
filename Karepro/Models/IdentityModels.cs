@@ -41,6 +41,8 @@ namespace Karepro.Models
 
         public DbSet<Mantenimiento> Mantenimientos { get; set; }
 
+        public DbSet<NivelUrgencia> NivelUrgencia { get; set; }
+
         public ApplicationDbContext()
             : base("KarePro", throwIfV1Schema: false)
         {
@@ -94,6 +96,11 @@ namespace Karepro.Models
                         .HasRequired(e => e.Institucion)
                         .WithMany()
                         .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Averia>()
+                .HasRequired(e => e.Nivel_urgencia)
+                .WithMany()
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Averia>()
                         .HasRequired(e => e.Equipo)

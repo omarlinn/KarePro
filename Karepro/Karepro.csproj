@@ -175,7 +175,7 @@
     <Compile Include="Controllers\EquiposController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstitucionsController.cs" />
-    <Compile Include="Controllers\InsumosController.cs" />
+    <Compile Include="Controllers\InsumoesController.cs" />
     <Compile Include="Controllers\MantenimientosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -191,6 +191,7 @@
     <Compile Include="Models\ManageUsersViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Mantenimiento.cs" />
+    <Compile Include="Models\NivelUrgencia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -258,15 +259,15 @@
     <Content Include="Views\Averias\Details.cshtml" />
     <Content Include="Views\Averias\Edit.cshtml" />
     <Content Include="Views\Averias\Index.cshtml" />
-    <Content Include="Views\Insumos\Create.cshtml" />
-    <Content Include="Views\Insumos\Delete.cshtml" />
-    <Content Include="Views\Insumos\Details.cshtml" />
-    <Content Include="Views\Insumos\Edit.cshtml" />
-    <Content Include="Views\Insumos\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Cuenta.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_Index.cshtml" />
+    <Content Include="Views\Insumoes\Create.cshtml" />
+    <Content Include="Views\Insumoes\Delete.cshtml" />
+    <Content Include="Views\Insumoes\Details.cshtml" />
+    <Content Include="Views\Insumoes\Edit.cshtml" />
+    <Content Include="Views\Insumoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

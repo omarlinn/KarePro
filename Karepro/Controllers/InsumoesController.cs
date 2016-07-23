@@ -10,17 +10,17 @@ using Karepro.Models;
 
 namespace Karepro.Controllers
 {
-    public class InsumosController : Controller
+    public class InsumoesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Insumos
+        // GET: Insumoes
         public ActionResult Index()
         {
             return View(db.Insumos.ToList());
         }
 
-        // GET: Insumos/Details/5
+        // GET: Insumoes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,13 +35,13 @@ namespace Karepro.Controllers
             return View(insumo);
         }
 
-        // GET: Insumos/Create
+        // GET: Insumoes/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Insumos/Create
+        // POST: Insumoes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -58,7 +58,7 @@ namespace Karepro.Controllers
             return View(insumo);
         }
 
-        // GET: Insumos/Edit/5
+        // GET: Insumoes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,7 +73,7 @@ namespace Karepro.Controllers
             return View(insumo);
         }
 
-        // POST: Insumos/Edit/5
+        // POST: Insumoes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -89,7 +89,7 @@ namespace Karepro.Controllers
             return View(insumo);
         }
 
-        // GET: Insumos/Delete/5
+        // GET: Insumoes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -104,7 +104,7 @@ namespace Karepro.Controllers
             return View(insumo);
         }
 
-        // POST: Insumos/Delete/5
+        // POST: Insumoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

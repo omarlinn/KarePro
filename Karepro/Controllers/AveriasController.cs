@@ -41,6 +41,7 @@ namespace Karepro.Controllers
         {
             ViewBag.IdEquipo = new SelectList(db.Equipos, "IdEquipo", "Nombre");
             ViewBag.IdInstitucion = new SelectList(db.Instituciones, "IdInstitucion", "Nombre");
+            ViewBag.IdUrgencia = new SelectList(db.NivelUrgencia, "IdUrgencia", "Nivel");
             return View();
         }
 
@@ -49,7 +50,7 @@ namespace Karepro.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdAveria,IdEquipo,Tipo_averia,Nivel_urgencia,Descripcion,IdInstitucion")] Averia averia)
+        public ActionResult Create([Bind(Include = "IdAveria,IdEquipo,Tipo_averia,IdUrgencia,Nivel_urgencia,Descripcion,IdInstitucion")] Averia averia)
         {
             if (ModelState.IsValid)
             {
@@ -60,6 +61,7 @@ namespace Karepro.Controllers
 
             ViewBag.IdEquipo = new SelectList(db.Equipos, "IdEquipo", "Nombre", averia.IdEquipo);
             ViewBag.IdInstitucion = new SelectList(db.Instituciones, "IdInstitucion", "Nombre", averia.IdInstitucion);
+            ViewBag.IdUrgencia = new SelectList(db.NivelUrgencia, "IdUrgencia", "Nivel", averia.IdUrgencia);
             return View(averia);
         }
 
@@ -77,6 +79,7 @@ namespace Karepro.Controllers
             }
             ViewBag.IdEquipo = new SelectList(db.Equipos, "IdEquipo", "Nombre", averia.IdEquipo);
             ViewBag.IdInstitucion = new SelectList(db.Instituciones, "IdInstitucion", "Nombre", averia.IdInstitucion);
+            ViewBag.IdUrgencia = new SelectList(db.NivelUrgencia, "IdUrgencia", "Nivel", averia.IdUrgencia);
             return View(averia);
         }
 
@@ -85,7 +88,7 @@ namespace Karepro.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdAveria,IdEquipo,Tipo_averia,Nivel_urgencia,Descripcion,IdInstitucion")] Averia averia)
+        public ActionResult Edit([Bind(Include = "IdAveria,IdEquipo,Tipo_averia,IdUrgencia,Nivel_urgencia,Descripcion,IdInstitucion")] Averia averia)
         {
             if (ModelState.IsValid)
             {
@@ -95,6 +98,7 @@ namespace Karepro.Controllers
             }
             ViewBag.IdEquipo = new SelectList(db.Equipos, "IdEquipo", "Nombre", averia.IdEquipo);
             ViewBag.IdInstitucion = new SelectList(db.Instituciones, "IdInstitucion", "Nombre", averia.IdInstitucion);
+            ViewBag.IdUrgencia = new SelectList(db.NivelUrgencia, "IdUrgencia", "Nivel", averia.IdUrgencia);
             return View(averia);
         }
 
