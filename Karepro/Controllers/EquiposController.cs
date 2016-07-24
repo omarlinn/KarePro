@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Karepro.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Karepro.Controllers
 {
@@ -17,9 +19,21 @@ namespace Karepro.Controllers
         // GET: Equipos
         public ActionResult Index()
         {
-            var equipos = db.Equipos.Include(e => e.Usuario).Include(e => e.Institucion);
-         
-            return View(equipos.ToList());
+            var userId = User.Identity.GetUserId();
+            var um = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+
+            if (um.IsInRole(userId, "Administrador") || um.IsInRole(userId, "Tecnico"))
+            {
+                return View(db.Equipos.ToList());
+            }
+            else
+            {
+                var equipos = from misEquipos in db.Equipos
+                              where misEquipos.IdUsuario == userId
+                              select misEquipos;
+
+                return View(equipos.ToList());
+            }
         }
 
         // GET: Equipos/Details/5

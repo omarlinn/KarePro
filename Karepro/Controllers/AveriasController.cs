@@ -8,25 +8,33 @@ using System.Web;
 using System.Web.Mvc;
 using Karepro.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+
 namespace Karepro.Controllers
 {
     public class AveriasController : Controller
     {
 
         private ApplicationDbContext db = new ApplicationDbContext();
-        
+
 
         public ActionResult Index()
         {
             var userId = User.Identity.GetUserId();
-            var averias = from misAverias in db.Averias
-                          join equipo in db.Equipos
-                          on misAverias.IdEquipo equals equipo.IdEquipo
-                          where equipo.IdUsuario == userId
-                          select misAverias;
-                
-                
-            return View(averias.ToList());
+            var um = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+
+            if (um.IsInRole(userId, "Administrador") || um.IsInRole(userId, "Tecnico"))
+            {
+                return View(db.Averias.ToList());
+            }else{
+                var averias = from misAverias in db.Averias
+                              join equipo in db.Equipos
+                              on misAverias.IdEquipo equals equipo.IdEquipo
+                              where equipo.IdUsuario == userId
+                              select misAverias;
+
+                return View(averias.ToList());
+            }
         }
 
        
