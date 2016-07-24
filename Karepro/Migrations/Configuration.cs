@@ -53,6 +53,7 @@ namespace Karepro.Migrations
                     Email = "admin@karepro.com"
                 };
 
+
                 manager.Create(user, "holamundo");
                 manager.AddToRole(user.Id, "Administrador");
             }
