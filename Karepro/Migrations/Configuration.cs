@@ -13,7 +13,6 @@ namespace Karepro.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "Karepro.Models.ApplicationDbContext";
         }
 
         protected override void Seed(Karepro.Models.ApplicationDbContext context)
@@ -46,7 +45,10 @@ namespace Karepro.Migrations
             {
                 var store = new UserStore<ApplicationUser>(context);
                 var manager = new UserManager<ApplicationUser>(store);
-                var user = new ApplicationUser {
+                var user = new ApplicationUser
+                {
+                    Name = "El",
+                    LastName = "Aminitreirol",
                     UserName = "admin@karepro.com",
                     Email = "admin@karepro.com"
                 };
