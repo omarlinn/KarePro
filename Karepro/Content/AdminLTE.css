@@ -981,10 +981,10 @@ body > .header .logo .icon {
     top: 100%;
     right: 0;
     left: auto;
-    border-right: 1px solid #dddddd;
-    border-bottom: 1px solid #dddddd;
-    border-left: 1px solid #dddddd;
-    background: #ffffff;
+    border-right: 1px solid #CC4444;
+    border-bottom: 1px solid #CC4444;
+    border-left: 1px solid #CC4444;
+    background: #CC3333;
   }
 }
 /* Fix menu positions on xs screens to appear correctly and fully */
@@ -2591,8 +2591,8 @@ Component: timeline
 .skin-black .navbar .nav .open > a,
 .skin-black .navbar .nav .open > a:hover,
 .skin-black .navbar .nav .open > a:focus {
-  background: #ffffff;
-  color: #999999;
+  background: #CC3333;
+  color: #FFF;
 }
 .skin-black .navbar .navbar-right > .nav {
   margin-right: 10px;
@@ -2611,8 +2611,8 @@ Component: timeline
 .skin-black .logo > a {
   color: #f9f9f9;
 }
-.skin-black .logo:hover {
-  background: #303030;
+a.logo img {
+    max-width: 60%;
 }
 /* skin-black content header */
 .skin-black .right-side > .content-header {
