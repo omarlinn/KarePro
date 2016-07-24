@@ -23,7 +23,7 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
   -webkit-font-smoothing: antialiased;
   min-height: 100%;
-  background: #f9f9f9;
+  background: #d0d3d4;
 }
 a {
   color: #3c8dbc;
@@ -63,7 +63,7 @@ body > .header {
 }
 /*right side - contins main content*/
 .right-side {
-  background-color: #f9f9f9;
+  background-color: #d0d3d4;
   margin-left: 220px;
 }
 /*left side - contains sidebar*/
@@ -118,7 +118,7 @@ body.fixed .wrapper {
 /* Content */
 .content {
   padding: 20px 15px;
-  background: #f9f9f9;
+  background: #d0d3d4;
 }
 /* Utility */
 /* H1 - H6 font */
@@ -2429,7 +2429,7 @@ Component: timeline
 */
 /* skin-blue navbar */
 .skin-blue .navbar {
-    background-color: rgba(52, 54, 66, 0.92);
+    background-color: #3c8dbc;
 }
 .skin-blue .navbar .nav a {
   color: rgba(255, 255, 255, 0.8);
@@ -2454,7 +2454,7 @@ Component: timeline
 }
 /* skin-blue logo */
 .skin-blue .logo {
-    background-color: rgb(52, 54, 66);
+    background-color: #367fa9;
   color: #f9f9f9;
 }
 .skin-blue .logo > a {
