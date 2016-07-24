@@ -53,6 +53,7 @@ namespace Karepro.Controllers
                              where equipo.IdUsuario == userId
                              select equipo;
 
+
             ViewBag.IdEquipo = new SelectList(misEquipos, "IdEquipo", "Nombre");
             ViewBag.IdInstitucion = new SelectList(db.Instituciones, "IdInstitucion", "Nombre");
             ViewBag.IdUrgencia = new SelectList(db.NivelUrgencia, "IdUrgencia", "Nivel");
