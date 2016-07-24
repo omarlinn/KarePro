@@ -58,7 +58,7 @@ namespace Karepro.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IdUsuario = new SelectList(db.Users, "Id", "Email", equipo.IdUsuario);
+            ViewBag.IdUsuario = new SelectList(db.Users, "Id", "UserName", equipo.IdUsuario);
             ViewBag.IdInstitucion = new SelectList(db.Instituciones, "IdInstitucion", "Nombre");
             return View(equipo);
         }

@@ -17,6 +17,7 @@ namespace Karepro.Migrations
 
         protected override void Seed(Karepro.Models.ApplicationDbContext context)
         {
+            //Anadir los 3 roles por defecto
             if (!context.Roles.Any(r => r.Name == "Administrador"))
             {
                 var store = new RoleStore<IdentityRole>(context);
@@ -41,6 +42,7 @@ namespace Karepro.Migrations
                 manager.Create(role3);
             }
 
+            //Anadir el usuario administrador por defecto
             if (!context.Users.Any(u => u.UserName == "admin@karepro.com"))
             {
                 var store = new UserStore<ApplicationUser>(context);
@@ -56,6 +58,21 @@ namespace Karepro.Migrations
 
                 manager.Create(user, "holamundo");
                 manager.AddToRole(user.Id, "Administrador");
+            }
+
+            if(!context.NivelUrgencia.Any(u => u.Nivel == "Baja"))
+            {
+                context.NivelUrgencia.Add(new NivelUrgencia { Nivel = "Baja" });
+            }
+
+            if (!context.NivelUrgencia.Any(u => u.Nivel == "Media"))
+            {
+                context.NivelUrgencia.Add(new NivelUrgencia { Nivel = "Media" });
+            }
+
+            if (!context.NivelUrgencia.Any(u => u.Nivel == "Alta"))
+            {
+                context.NivelUrgencia.Add(new NivelUrgencia { Nivel = "Alta" });
             }
         }
     }
