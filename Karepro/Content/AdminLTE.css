@@ -11,6 +11,14 @@
     Core: General style
 ----------------------------
 */
+
+table.table{
+    background:#fff;
+}
+.top{
+    background:#3c8dbc;
+    color:#fff;
+}
 span > a{
     color: #333;
     font-weight: bold;
