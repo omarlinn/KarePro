@@ -7,21 +7,29 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Karepro.Models;
-
+using Microsoft.AspNet.Identity;
 namespace Karepro.Controllers
 {
     public class AveriasController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Averias
+        private ApplicationDbContext db = new ApplicationDbContext();
+        
+
         public ActionResult Index()
         {
-            var averias = db.Averias.Include(a => a.Equipo).Include(a => a.Institucion);
+            var userId = User.Identity.GetUserId();
+            var averias = from misAverias in db.Averias
+                          join equipo in db.Equipos
+                          on misAverias.IdEquipo equals equipo.IdEquipo
+                          where equipo.IdUsuario == userId
+                          select misAverias;
+                
+                
             return View(averias.ToList());
         }
 
-        // GET: Averias/Details/5
+       
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,18 +44,22 @@ namespace Karepro.Controllers
             return View(averia);
         }
 
-        // GET: Averias/Create
+       
         public ActionResult Create()
         {
-            ViewBag.IdEquipo = new SelectList(db.Equipos, "IdEquipo", "Nombre");
+
+            var userId = User.Identity.GetUserId();
+            var misEquipos = from equipo in db.Equipos
+                             where equipo.IdUsuario == userId
+                             select equipo;
+
+            ViewBag.IdEquipo = new SelectList(misEquipos, "IdEquipo", "Nombre");
             ViewBag.IdInstitucion = new SelectList(db.Instituciones, "IdInstitucion", "Nombre");
             ViewBag.IdUrgencia = new SelectList(db.NivelUrgencia, "IdUrgencia", "Nivel");
             return View();
         }
 
-        // POST: Averias/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+  
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IdAveria,IdEquipo,Tipo_averia,IdUrgencia,Nivel_urgencia,Descripcion,IdInstitucion")] Averia averia)
@@ -59,7 +71,12 @@ namespace Karepro.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IdEquipo = new SelectList(db.Equipos, "IdEquipo", "Nombre", averia.IdEquipo);
+            var userId = User.Identity.GetUserId();
+            var misEquipos = from equipo in db.Equipos
+                             where equipo.IdUsuario == userId
+                             select equipo;
+
+            ViewBag.IdEquipo = new SelectList(misEquipos, "IdEquipo", "Nombre");
             ViewBag.IdInstitucion = new SelectList(db.Instituciones, "IdInstitucion", "Nombre", averia.IdInstitucion);
             ViewBag.IdUrgencia = new SelectList(db.NivelUrgencia, "IdUrgencia", "Nivel", averia.IdUrgencia);
             return View(averia);
@@ -83,9 +100,7 @@ namespace Karepro.Controllers
             return View(averia);
         }
 
-        // POST: Averias/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "IdAveria,IdEquipo,Tipo_averia,IdUrgencia,Nivel_urgencia,Descripcion,IdInstitucion")] Averia averia)
@@ -102,7 +117,7 @@ namespace Karepro.Controllers
             return View(averia);
         }
 
-        // GET: Averias/Delete/5
+       
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -117,7 +132,7 @@ namespace Karepro.Controllers
             return View(averia);
         }
 
-        // POST: Averias/Delete/5
+       
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
