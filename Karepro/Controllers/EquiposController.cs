@@ -18,7 +18,7 @@ namespace Karepro.Controllers
         public ActionResult Index()
         {
             var equipos = db.Equipos.Include(e => e.Usuario).Include(e => e.Institucion);
-            
+         
             return View(equipos.ToList());
         }
 

@@ -7,13 +7,13 @@ namespace Karepro.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class khgfbn : IMigrationMetadata
+    public sealed partial class hjjhg : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(khgfbn));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(hjjhg));
         
         string IMigrationMetadata.Id
         {
-            get { return "201607232315372_khgfbn,"; }
+            get { return "201607240230264_hjjhg"; }
         }
         
         string IMigrationMetadata.Source
