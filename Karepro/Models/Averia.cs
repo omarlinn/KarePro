@@ -13,7 +13,7 @@ namespace Karepro.Models
 
         public int IdUrgencia { get; set; }
         public virtual NivelUrgencia Nivel_urgencia { get; set; }
-        public string Descripcion { get; set; }
+        public string Descripcion { get; set; } 
         public int IdInstitucion { get; set; }
         public virtual Institucion Institucion { get; set; }
         public virtual Equipo Equipo { get; set; }

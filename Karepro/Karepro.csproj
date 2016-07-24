@@ -189,6 +189,7 @@
     <Compile Include="Models\Averia.cs" />
     <Compile Include="Models\Departamento.cs" />
     <Compile Include="Models\Equipo.cs" />
+    <Compile Include="Models\EstadoDeAverias.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Institucion.cs" />
     <Compile Include="Models\Insumo.cs" />
