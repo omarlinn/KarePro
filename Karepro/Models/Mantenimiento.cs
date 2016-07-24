@@ -17,11 +17,12 @@ namespace Karepro.Models
         public string Nivel_urgencia { get; set; }
         public string Descripcion { get; set; }
         public int IdInstitucion { get; set; }
-
         [ForeignKey("IdInstitucion")]
         public virtual Institucion Institucion { get; set; }
+        public int IdEstado { get; set; }
+        [ForeignKey("IdEstado")]
+        public virtual EstadoAveria Estado { get; set; }
         public virtual Averia Averia { get; set; }
-
         public virtual ICollection<Insumo> Insumos { get; set; }
     }
 }

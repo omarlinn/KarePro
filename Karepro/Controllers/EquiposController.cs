@@ -17,7 +17,8 @@ namespace Karepro.Controllers
         // GET: Equipos
         public ActionResult Index()
         {
-            var equipos = db.Equipos.Include(e => e.Usuario);
+            var equipos = db.Equipos.Include(e => e.Usuario).Include(e => e.Institucion);
+         
             return View(equipos.ToList());
         }
 
@@ -40,6 +41,7 @@ namespace Karepro.Controllers
         public ActionResult Create()
         {
             ViewBag.IdUsuario = new SelectList(db.Users, "Id", "Email");
+            ViewBag.IdInstitucion = new SelectList(db.Instituciones, "IdInstitucion", "Nombre");
             return View();
         }
 
@@ -48,7 +50,7 @@ namespace Karepro.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdEquipo,Nombre,Descripcion,Perio_mantenimiento,IdUsuario,Cod_inst")] Equipo equipo)
+        public ActionResult Create([Bind(Include = "IdEquipo,Nombre,Descripcion,Perio_mantenimiento,IdUsuario,IdInstitucion")] Equipo equipo)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +59,8 @@ namespace Karepro.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IdUsuario = new SelectList(db.Users, "Id", "Email", equipo.IdUsuario);
+            ViewBag.IdUsuario = new SelectList(db.Users, "Id", "UserName", equipo.IdUsuario);
+            ViewBag.IdInstitucion = new SelectList(db.Instituciones, "IdInstitucion", "Nombre");
             return View(equipo);
         }
 
@@ -74,6 +77,7 @@ namespace Karepro.Controllers
                 return HttpNotFound();
             }
             ViewBag.IdUsuario = new SelectList(db.Users, "Id", "Email", equipo.IdUsuario);
+            ViewBag.IdInstitucion = new SelectList(db.Instituciones, "IdInstitucion", "Nombre");
             return View(equipo);
         }
 
@@ -91,6 +95,7 @@ namespace Karepro.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.IdUsuario = new SelectList(db.Users, "Id", "Email", equipo.IdUsuario);
+            ViewBag.IdInstitucion = new SelectList(db.Instituciones, "IdInstitucion", "Nombre");
             return View(equipo);
         }
 

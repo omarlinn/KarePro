@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Karepro.Models
@@ -49,8 +50,7 @@ namespace Karepro.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
+        [Display(Name = "Username")]
         public string Email { get; set; }
 
         [Required]
@@ -64,21 +64,41 @@ namespace Karepro.Models
 
     public class RegisterViewModel
     {
+       
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Display(Name = "Nombre de usuario")]
+        public string UserName { get; set; }
+
+        [Required]
+        [Display(Name = "Nombre")]
+        public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Apellidos")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Institucion")]
+        public int idInstitucion { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "EL {0} deberia tener al menos {2} caracteres", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Contraseña")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
+        [Display(Name = "Confirme contraseña")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Rol del usuario")]
+        public string Role { get; set; }
     }
 
     public class ResetPasswordViewModel

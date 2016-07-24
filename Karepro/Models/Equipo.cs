@@ -11,8 +11,8 @@ namespace Karepro.Models
         public string Descripcion { get; set; }
         public string Perio_mantenimiento { get; set; }
         public string IdUsuario { get; set; }
-        public int Cod_inst { get; set; }
-
+        public int IdInstitucion { get; set; }
+        [ForeignKey("IdInstitucion")]
         public virtual Institucion Institucion { get; set; }
 
         [ForeignKey("IdUsuario")]

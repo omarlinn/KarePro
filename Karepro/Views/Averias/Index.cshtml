@@ -10,7 +10,7 @@
     @Html.ActionLink("Registrar Averia", "Create")
 </p>
 <table class="table">
-    <tr>
+    <tr class="top">
         <th>
             @Html.DisplayNameFor(model => model.Equipo.Nombre)
         </th>
@@ -18,15 +18,10 @@
             @Html.DisplayNameFor(model => model.Institucion.Nombre)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Tipo_averia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nivel_urgencia)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Descripcion)
         </th>
-        <th></th>
+        <th>Urgencia</th>
+        <th>Acciones</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -38,14 +33,13 @@
             @Html.DisplayFor(modelItem => item.Institucion.Nombre)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Tipo_averia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nivel_urgencia)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Descripcion)
         </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nivel_urgencia.Nivel)
+        </td>
+       
+
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.IdAveria }) |
             @Html.ActionLink("Details", "Details", new { id=item.IdAveria }) |

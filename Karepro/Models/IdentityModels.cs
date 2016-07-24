@@ -11,6 +11,10 @@ namespace Karepro.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        public virtual string Name { get; set; }
+
+        public virtual string LastName { get; set; }
+
         public virtual Institucion Institucion { get; set; }
         public int? idInstitucion { get; set; }
 
@@ -40,6 +44,8 @@ namespace Karepro.Models
         public DbSet<Insumo> Insumos { get; set; }
 
         public DbSet<Mantenimiento> Mantenimientos { get; set; }
+
+        public DbSet<NivelUrgencia> NivelUrgencia { get; set; }
 
         public ApplicationDbContext()
             : base("KarePro", throwIfV1Schema: false)
@@ -94,6 +100,11 @@ namespace Karepro.Models
                         .HasRequired(e => e.Institucion)
                         .WithMany()
                         .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Averia>()
+                .HasRequired(e => e.Nivel_urgencia)
+                .WithMany()
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Averia>()
                         .HasRequired(e => e.Equipo)

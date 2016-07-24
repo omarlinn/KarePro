@@ -10,9 +10,9 @@
     @Html.ActionLink("Registrar equipo", "Create")
 </p>
 <table class="table table-hover">
-    <tr>
+    <tr class="top">
         <th>
-            @Html.DisplayNameFor(model => model.Usuario.Email)
+            Asignado a
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Nombre)
@@ -21,18 +21,19 @@
             @Html.DisplayNameFor(model => model.Descripcion)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Perio_mantenimiento)
+
+            Periodo Mantenimiento
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Cod_inst)
+            Institucion
         </th>
-        <th></th>
+        <th>Acciones</th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Usuario.Email)
+            @Html.DisplayFor(modelItem => item.Usuario.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Nombre)
@@ -44,7 +45,7 @@
             @Html.DisplayFor(modelItem => item.Perio_mantenimiento)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Cod_inst)
+            @Html.DisplayFor(modelItem => item.IdInstitucion)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.IdEquipo }) |
