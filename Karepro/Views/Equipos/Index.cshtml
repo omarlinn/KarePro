@@ -12,7 +12,7 @@
 <table class="table table-hover">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Usuario.Email)
+            @Html.DisplayNameFor(model => model.Usuario.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Nombre)
@@ -21,18 +21,18 @@
             @Html.DisplayNameFor(model => model.Descripcion)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Perio_mantenimiento)
+            Periodo Mantenimiento
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IdInstitucion)
+            Institucion
         </th>
-        <th></th>
+        <th>Acciones</th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Usuario.Email)
+            @Html.DisplayFor(modelItem => item.Usuario.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Nombre)
