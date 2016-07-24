@@ -18,7 +18,7 @@
         @Html.HiddenFor(model => model.IdEquipo)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Usuario.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Usuario.Name,"Asignado a" ,htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
