@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Karepro.Controllers
 {
+    [Authorize]
     public class EquiposController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

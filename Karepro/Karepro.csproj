@@ -173,7 +173,7 @@
     <Compile Include="Controllers\AveriasController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\EquiposController.cs" />
-    <Compile Include="Views\Departamento\HomeController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstitucionsController.cs" />
     <Compile Include="Controllers\InsumoesController.cs" />
     <Compile Include="Controllers\MantenimientosController.cs" />

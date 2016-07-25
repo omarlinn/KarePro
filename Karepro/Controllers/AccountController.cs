@@ -13,7 +13,7 @@ using System.Collections.Generic;
 
 namespace Karepro.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrador")]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -60,6 +60,10 @@ namespace Karepro.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (HttpContext.Request.IsAuthenticated)
+            {
+               return RedirectToAction("Index", "Home");
+            }
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -408,11 +412,11 @@ namespace Karepro.Controllers
         //
         // POST: /Account/LogOff
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("LogIn", "Account");
         }
 
         //

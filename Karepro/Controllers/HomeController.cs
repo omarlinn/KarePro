@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Karepro.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         // GET: Homr

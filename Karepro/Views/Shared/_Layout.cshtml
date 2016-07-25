@@ -42,7 +42,9 @@
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-right">
-                                        <input class="btn btn-default btn-flat" type ="submit" value="Cerrar session" onclick=" return Session['usuario'] == null"/>
+                                        <form method="post" action="~/Account/LogOff">
+                                            <input class="btn btn-default btn-flat" type="submit" value="Cerrar session" />
+                                        </form>
                                     </div>
                                 </li>
                             </ul>
@@ -91,17 +93,22 @@
                                 <li><a href="~/Averias/Index">Ver averias</a></li>
                             </ul>
                         </li>
-                        <li class="treeview">
-                            <a href="ks_posts.php">
-                                <i class="fa fa-laptop"></i>
-                                <span>Insumos</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="~/Insumoes/Create">Agregar insumo</a></li>
-                                <li><a href="~/Insumoes/Index">Ver insumo</a></li>
-                            </ul>
-                        </li>
+                        @{
+                            if (User.IsInRole("Administrador"))
+                            {
+                                <li class="treeview">
+                                    <a href="ks_posts.php">
+                                        <i class="fa fa-laptop"></i>
+                                        <span>Insumos</span>
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li><a href="~/Insumoes/Create">Agregar insumo</a></li>
+                                        <li><a href="~/Insumoes/Index">Ver insumo</a></li>
+                                    </ul>
+                                </li>
+
+
                         <li class="treeview">
                             <a href="ks_posts.php">
                                 <i class="fa fa-laptop"></i>
@@ -113,6 +120,19 @@
                                 <li><a href="~/Institucions/Index">Ver intituciones</a></li>
                             </ul>
                         </li>
+                        <li class="treeview">
+                            <a href="ks_posts.php">
+                                <i class="fa fa-laptop"></i>
+                                <span>Usuarios</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="~/Account/Register">Agregar</a></li>
+                            </ul>
+                        </li>
+                            }
+                        }
+
                     </ul>
                 </section>
                 <!-- /.sidebar -->

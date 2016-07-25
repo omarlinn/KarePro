@@ -10,6 +10,7 @@ using Karepro.Models;
 
 namespace Karepro.Controllers
 {
+    [Authorize(Roles = "Tecnico, Administrador")]
     public class MantenimientosController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
