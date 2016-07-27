@@ -42,9 +42,7 @@
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-right">
-                                        <form method="post" action="~/Account/LogOff">
-                                            <input class="btn btn-default btn-flat" type="submit" value="Cerrar session" />
-                                        </form>
+                                        @Html.Partial("_LoginPartial")
                                     </div>
                                 </li>
                             </ul>
@@ -123,30 +121,34 @@
                                     <li><a href="~/Account/Register">Agregar</a></li>
                                 </ul>
                             </li>
-                         }
-                      }
-                        <li class="treeview">
-                            <a href="ks_posts.php">
-                                <i class="fa fa-laptop"></i>
-                                <span>Mantenimiento</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="~/Mantenimientos/">Ver</a></li>
-                                <li><a href="~/Mantenimientos/Create">Agregar</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="treeview">
-                            <a href="ks_posts.php">
-                                <i class="fa fa-laptop"></i>
-                                <span>Insumos</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li>@Html.ActionLink("Agregar", "Create", "Insumoes")</li>
-                            </ul>
-                        </li>
+                            <li class="treeview">
+                                <a href="ks_posts.php">
+                                    <i class="fa fa-laptop"></i>
+                                    <span>Insumos</span>
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Agregar", "Create", "Insumoes")</li>
+                                </ul>
+                            </li>
+                            }
+                        }
+                        @{
+                            if (User.IsInRole("Tecnico"))
+                            {
+                                <li class="treeview">
+                                    <a href="ks_posts.php">
+                                        <i class="fa fa-laptop"></i>
+                                        <span>Mantenimiento</span>
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li><a href="~/Mantenimientos/">Ver</a></li>
+                                        <li><a href="~/Mantenimientos/Create">Agregar</a></li>
+                                    </ul>
+                                </li>
+                            }
+                        }
                     </ul>
                 </section>
                 <!-- /.sidebar -->

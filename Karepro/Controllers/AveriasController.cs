@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using Karepro.Models;
-using Karepro.Controllers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -18,7 +14,6 @@ namespace Karepro.Controllers
     {
 
         private ApplicationDbContext db = new ApplicationDbContext();
-
 
         public ActionResult Index()
         {
@@ -75,7 +70,7 @@ namespace Karepro.Controllers
         }
 
   
-        [HttpPost]
+        /*[HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IdAveria,IdEquipo,Tipo_averia,IdUrgencia,Nivel_urgencia,Descripcion,IdInstitucion")] Averia averia)
         {
@@ -107,8 +102,6 @@ namespace Karepro.Controllers
                                   where equipo.IdEquipo == averia.IdEquipo
                                   select equipo).FirstOrDefault();
 
-
-
             string use = "elleurielmenor12@gmail.com"; //Aqui va el usuario logeado, solo que el correo debe existir para que se pueda enviar el msj
             string pass = "michael1922"; //El pass no deberia estar escrito aqui, luego implementamos cuestiones de seguridad
             string host = "smtp.gmail.com";
@@ -123,7 +116,7 @@ namespace Karepro.Controllers
                 + "el equipo {0} del Se;or: {1} ha sido reportado con una averia asi que le pedimos pasar a revisar"
                 + " lo mas rapido posible. <br><strong>Descripcion problema: </strong><br>{2}", equipoReportado.Nombre, nombreEncargadoEquipo, averia.Descripcion);
 
-            SendMailController email = new SendMailController(); //Esta clase gestiona la config necesaria para enviar msj
+           SendMailController email = new SendMailController(); //Esta clase gestiona la config necesaria para enviar msj
            
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
             var tenicos = roleManager.FindByName("Tecnico").Users; //Devuelve todos los usuarios con el rol tecnico
@@ -131,9 +124,8 @@ namespace Karepro.Controllers
             //Enviar el correo a todos los tecnicos
             tenicos.ToList().ForEach(t => 
                 email.send(use, pass, host, port, db.Users.Find(t.UserId).Email, subject, body)
-            );
-            
-        }
+            ); 
+        }*/
 
 
         // GET: Averias/Edit/5
@@ -170,8 +162,6 @@ namespace Karepro.Controllers
             ViewBag.IdUrgencia = new SelectList(db.NivelUrgencia, "IdUrgencia", "Nivel", averia.IdUrgencia);
             return View(averia);
         }
-
-        
 
         public ActionResult Delete(int? id)
         {

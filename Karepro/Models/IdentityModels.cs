@@ -46,6 +46,7 @@ namespace Karepro.Models
         public DbSet<Mantenimiento> Mantenimientos { get; set; }
 
         public DbSet<NivelUrgencia> NivelUrgencia { get; set; }
+        public DbSet<EstadoAveria> EstadoAveria { get; set; }
 
         public ApplicationDbContext()
             : base("KarePro", throwIfV1Schema: false)

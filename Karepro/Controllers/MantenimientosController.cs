@@ -41,6 +41,11 @@ namespace Karepro.Controllers
         public ActionResult Create()
         {
             ViewBag.IdInstitucion = new SelectList(db.Instituciones, "IdInstitucion", "Nombre");
+            ViewBag.IdInsumo = new SelectList(db.Insumos, "IdInsumo", "Nombre");
+            ViewBag.IdAveria = new SelectList(db.Averias, "IdAveria", "Descripcion");
+            ViewBag.IdEstado = new SelectList(db.EstadoAveria, "IdEstado", "Estado");
+            //ViewBag.IdEstado = new SelectList(db.EstadoAveria, "IdEstado", "Estado");
+
             return View();
         }
 
@@ -49,7 +54,7 @@ namespace Karepro.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdMantenimiento,IdAveria,Tipo_mantenimiento,Nivel_urgencia,Descripcion,IdInstitucion")] Mantenimiento mantenimiento)
+        public ActionResult Create([Bind(Include = "IdMantenimiento,IdAveria,Tipo_mantenimiento,Nivel_urgencia,Descripcion,IdInstitucion,IdEstado")] Mantenimiento mantenimiento)
         {
             if (ModelState.IsValid)
             {
@@ -58,8 +63,8 @@ namespace Karepro.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IdAveria = new SelectList(db.Averias, "IdAveria", "Tipo_averia", mantenimiento.IdAveria);
-            ViewBag.IdInstitucion = new SelectList(db.Instituciones, "IdInstitucion", "Nombre", mantenimiento.IdInstitucion);
+            //ViewBag.IdAveria = new SelectList(db.Averias, "IdAveria", "Tipo_averia", mantenimiento.IdAveria);
+            //ViewBag.IdInstitucion = new SelectList(db.Instituciones, "IdInstitucion", "Nombre", mantenimiento.IdInstitucion);
             return View(mantenimiento);
         }
 

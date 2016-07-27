@@ -60,10 +60,10 @@ namespace Karepro.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            if (HttpContext.Request.IsAuthenticated)
+            /*if (HttpContext.Request.IsAuthenticated)
             {
                return RedirectToAction("Index", "Home");
-            }
+            }*/
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -407,7 +407,7 @@ namespace Karepro.Controllers
         //
         // POST: /Account/LogOff
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);

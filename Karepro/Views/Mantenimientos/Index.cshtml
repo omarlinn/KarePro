@@ -12,19 +12,22 @@
 <table class="table">
     <tr class="top">
         <th>
-            @Html.DisplayNameFor(model => model.Averia.Nivel_urgencia)
+            Averia
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Institucion.Nombre)
+            Tipo
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Tipo_mantenimiento)
+            Urgencia
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Nivel_urgencia)
+            Descripción
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
+            Institución
+        </th>
+        <th>
+            Estado
         </th>
         <th></th>
     </tr>
@@ -32,10 +35,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Averia.Nivel_urgencia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Institucion.Nombre)
+            @Html.DisplayFor(modelItem => item.Averia.Descripcion)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Tipo_mantenimiento)
@@ -45,6 +45,12 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Institucion.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado.Estado)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.IdMantenimiento }) |

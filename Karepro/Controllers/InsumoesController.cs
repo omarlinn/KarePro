@@ -40,6 +40,7 @@ namespace Karepro.Controllers
         public ActionResult Create()
         {
             ViewBag.IdMantenimiento = new SelectList(db.Mantenimientos, "Mantenimientos", "Nombre");
+            ViewBag.IdInsumo = new SelectList(db.Insumos, "Insumoes", "Nombre");
             return View();
         }
 
