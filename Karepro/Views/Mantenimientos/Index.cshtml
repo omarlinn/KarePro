@@ -4,11 +4,8 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Mantenimientos actuales</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr class="top">
         <th>
@@ -33,7 +30,7 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    <tr class="@Html.DisplayFor(modelItem => item.Estado.IdEstado)">
         <td>
             @Html.DisplayFor(modelItem => item.Averia.Descripcion)
         </td>
@@ -53,11 +50,23 @@
             @Html.DisplayFor(modelItem => item.Estado.Estado)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdMantenimiento }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdMantenimiento }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdMantenimiento })
+            <button class="btn btn-primary btn-sm" id="@item.IdMantenimiento">Borrar</button>
         </td>
     </tr>
 }
 
 </table>
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.17').each(function (){
+            $(".17").css("background-color", "Green");
+        });
+        $('.18').each(function (){
+            $(".18").css("background-color", "Yellow");
+        });
+        $('.19').each(function (){
+            $(".19").css("background-color", "Orange");
+        });
+    });
+</script>

@@ -93,7 +93,12 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="~/Averias/Create">Agregar averias</a></li>
+                                @{
+                                    if (User.IsInRole("Administrador"))
+                                    {
+                                        <li><a href="~/Averias/Create">Agregar averias</a></li>
+                                    }
+                                }
                                 <li><a href="~/Averias/Index">Ver averias</a></li>
                             </ul>
                         </li>

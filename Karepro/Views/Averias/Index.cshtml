@@ -11,21 +11,21 @@
 <table class="table">
     <tr class="top">
         <th>
-            @Html.DisplayNameFor(model => model.Equipo.Nombre)
+            Equipo
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Institucion.Nombre)
+            Institución Asignada
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Descripcion)
         </th>
-        <th>Urgencia</th>
+        <th>Nivel de urgencia</th>
         <th>Acciones</th>
     </tr>
    
 @foreach (var item in Model)
 {
-    <tr id="color" class="@Html.DisplayFor(modelItem => item.Nivel_urgencia.Nivel)" onload="load(@Html.DisplayFor(modelItem => item.Nivel_urgencia.Nivel))" value="@Html.DisplayFor(modelItem => item.Nivel_urgencia.Nivel)">
+    <tr id="color" class="@Html.DisplayFor(modelItem => item.Nivel_urgencia.Nivel)" value="@Html.DisplayFor(modelItem => item.Nivel_urgencia.Nivel)">
         <td>
             @Html.DisplayFor(modelItem => item.Equipo.Nombre)
         </td>
@@ -38,10 +38,8 @@
         <td>
             @Html.DisplayFor(modelItem => item.Nivel_urgencia.Nivel)
         </td>
-       
-
         <td>
-            @Html.ActionLink("Reportar", "Edit", new { id=item.IdAveria })
+            <button class="btn btn-primary btn-sm" id="@item.IdAveria">Reportar</button>
         </td>
     </tr>
 }
