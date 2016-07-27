@@ -10,7 +10,7 @@ using Karepro.Models;
 
 namespace Karepro.Controllers
 {
-    [Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "Administrador,Tecnico")]
     public class InsumoesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -39,6 +39,7 @@ namespace Karepro.Controllers
         // GET: Insumoes/Create
         public ActionResult Create()
         {
+            ViewBag.IdMantenimiento = new SelectList(db.Mantenimientos, "Mantenimientos", "Nombre");
             return View();
         }
 

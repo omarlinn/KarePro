@@ -22,20 +22,24 @@ namespace Karepro.Controllers
         public ActionResult Index()
         {
             var userId = User.Identity.GetUserId();
-            var um = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            //var um = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
 
-            if (um.IsInRole(userId, "Administrador") || um.IsInRole(userId, "Tecnico"))
+            if (User.IsInRole("Administrador") || User.IsInRole("Tecnico"))
             {
-                return View(db.Averias.ToList());
-            }else{
-                var averias = from misAverias in db.Averias
-                              join equipo in db.Equipos
-                              on misAverias.IdEquipo equals equipo.IdEquipo
-                              where equipo.IdUsuario == userId
-                              select misAverias;
+                var averias = from averia in db.Averias
+                              orderby averia.Nivel_urgencia.IdUrgencia descending
+                              select averia;
 
                 return View(averias.ToList());
             }
+                var ave = from misAverias in db.Averias
+                              join equipo in db.Equipos
+                              on misAverias.IdEquipo equals equipo.IdEquipo
+                              where equipo.IdUsuario == userId
+                              orderby misAverias.Nivel_urgencia.Nivel descending
+                              select misAverias;
+
+                return View(ave.ToList());
         }
 
        

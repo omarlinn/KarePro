@@ -146,16 +146,11 @@ namespace Karepro.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            
+
             //Get the value from database and then set it to ViewBag to pass it View
-            IEnumerable<SelectListItem> items = db.Instituciones.Select(c => new SelectListItem
-            {
-                Value = ""+c.IdInstitucion,
-                Text = c.Nombre
+            ViewBag.IdInstitucion = new SelectList(db.Instituciones, "IdInstitucion", "Nombre");
 
-            });
-
-            ViewBag.idInstitucion = items;
+           
             return View();
         }
 

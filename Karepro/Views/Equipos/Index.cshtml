@@ -6,9 +6,14 @@
 
 <h2>Equipos</h2>
 
-<p>
-    @Html.ActionLink("Registrar equipo", "Create")
-</p>
+
+
+@if (User.IsInRole("Administrador"))
+{
+    <p>
+        @Html.ActionLink("Registrar equipo", "Create")
+    </p>
+}
 <table class="table table-hover">
     <tr class="top">
         <th>
@@ -27,7 +32,13 @@
         <th>
             Institucion
         </th>
-        <th>Acciones</th>
+        @if (User.IsInRole("Administrador"))
+        {
+            <th>Accion</th>
+        }
+
+
+    
     </tr>
 
 @foreach (var item in Model) {
@@ -45,12 +56,15 @@
             @Html.DisplayFor(modelItem => item.Perio_mantenimiento)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IdInstitucion)
+            @Html.DisplayFor(modelItem => item.Institucion.Nombre)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdEquipo }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdEquipo }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdEquipo })
+            @if (User.IsInRole("Administrador"))
+            {
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdEquipo })
+            }
+             
+
         </td>
     </tr>
 }
