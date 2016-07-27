@@ -70,7 +70,7 @@ namespace Karepro.Controllers
         }
 
   
-        [HttpPost]
+        /*[HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IdAveria,IdEquipo,Tipo_averia,IdUrgencia,Nivel_urgencia,Descripcion,IdInstitucion")] Averia averia)
         {
@@ -125,7 +125,7 @@ namespace Karepro.Controllers
             tenicos.ToList().ForEach(t => 
                 email.send(use, pass, host, port, db.Users.Find(t.UserId).Email, subject, body)
             ); 
-        }
+        }*/
 
 
         // GET: Averias/Edit/5

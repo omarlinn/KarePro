@@ -4,8 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
+<h2>Averias</h2>
 <p>
     @Html.ActionLink("Registrar Averia", "Create")
 </p>
@@ -23,9 +22,10 @@
         <th>Urgencia</th>
         <th>Acciones</th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr>
+   
+@foreach (var item in Model)
+{
+    <tr id="color" class="@Html.DisplayFor(modelItem => item.Nivel_urgencia.Nivel)" onload="load(@Html.DisplayFor(modelItem => item.Nivel_urgencia.Nivel))" value="@Html.DisplayFor(modelItem => item.Nivel_urgencia.Nivel)">
         <td>
             @Html.DisplayFor(modelItem => item.Equipo.Nombre)
         </td>
@@ -47,3 +47,17 @@
 }
 
 </table>
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.Alta').each(function (){
+            $(".Alta").css("background-color", "Red");
+        });
+        $('.Baja').each(function (){
+            $(".Baja").css("background-color", "Yellow");
+        });
+        $('.Media').each(function (){
+            $(".Media").css("background-color", "Orange");
+        });    
+    });      
+</script>
