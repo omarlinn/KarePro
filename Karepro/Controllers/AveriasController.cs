@@ -89,6 +89,7 @@ namespace Karepro.Controllers
             if (User.IsInRole("Administrador"))
             {
                 var averias = from averia in db.Averias
+                              where averia.EstadoAveria == "No Resuelta"
                               orderby averia.Nivel_urgencia.IdUrgencia descending
                               select averia;
 
@@ -100,6 +101,7 @@ namespace Karepro.Controllers
                 var averias = from a in db.Averias
                               where a.IdTecnico == userId
                               select a;
+
 
                 return View(averias.ToList());
             }
@@ -156,6 +158,8 @@ namespace Karepro.Controllers
             {
 
                 averia.IdTecnico = model.idTecnico;
+                var email = db.Users.Find(model.idTecnico).Email;
+                enviarMensajeATenicos(averia, email);
 
                 db.Entry(averia).State = EntityState.Modified;
                 db.SaveChanges();
@@ -200,7 +204,8 @@ namespace Karepro.Controllers
             if (ModelState.IsValid)
                {
                 enviarMensaje(averia);  //Cuando se reporta la averia ese reporte se envia por msj a los tecnicos a traves de este metodo
-               
+                var estado = db.EstadoAveria.Where(e => e.Estado == "No Resuelta").FirstOrDefault();
+                averia.EstadoAveria = "No Resuelta";
                 db.Averias.Add(averia);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -235,14 +240,14 @@ namespace Karepro.Controllers
             //Cuando se logre saber los tecnicos de una empresa el mismo correo se enviara a cu de ellos
             string subject = "KarePro, Reporte de averias";
 
-            string body = string.Format("Reporte de averias, KarePro. <br>Distinguido tecnico, lamentamos decirle "
-                + "el equipo {0} del Se;or: {1} ha sido reportado con una averia asi que le pedimos pasar a revisar"
-                + " lo mas rapido posible. <br><strong>Descripcion problema: </strong><br>{2}", equipoReportado.Nombre, nombreEncargadoEquipo, averia.Descripcion);
+            string body = string.Format("Reporte de averias, KarePro. <br>Distinguido administrador, lamentamos decirle "
+                + "el equipo {0} del Usuario {1} ha sido reportado con una averia asi que le pedimos asignar esta averia"
+                + " a un técnico lo mas rapido posible. <br><strong>Descripcion problema: </strong><br>{2}", equipoReportado.Nombre, nombreEncargadoEquipo, averia.Descripcion);
 
            SendMailController email = new SendMailController(); //Esta clase gestiona la config necesaria para enviar msj
            
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
-            var tenicos = roleManager.FindByName("Tecnico").Users; //Devuelve todos los usuarios con el rol tecnico
+            var tenicos = roleManager.FindByName("Administrador").Users; //Devuelve todos los usuarios con el rol tecnico
 
             //Enviar el correo a todos los tecnicos
             tenicos.ToList().ForEach(t => 
@@ -250,6 +255,32 @@ namespace Karepro.Controllers
             ); 
         }
 
+        public void enviarMensajeATenicos(Averia averia, string emailTecnico)
+        {
+            //Este metodo gestiona el content del mensaje de las averias registradas
+
+            var equipoReportado = (from equipo in db.Equipos
+                                   where equipo.IdEquipo == averia.IdEquipo
+                                   select equipo).FirstOrDefault();
+
+            string use = "elleurielmenor12@gmail.com"; //Aqui va el usuario logeado, solo que el correo debe existir para que se pueda enviar el msj
+            string pass = "michael1922"; //El pass no deberia estar escrito aqui, luego implementamos cuestiones de seguridad
+            string host = "smtp.gmail.com";
+            int port = 25;
+
+            string nombreEncargadoEquipo = equipoReportado.Usuario.Name + equipoReportado.Usuario.LastName;
+
+            //Cuando se logre saber los tecnicos de una empresa el mismo correo se enviara a cu de ellos
+            string subject = "KarePro, Reporte de averias";
+
+            string body = string.Format("Reporte de averias, KarePro. <br>Distinguido Tecnico, lamentamos decirle "
+                + "el equipo {0} del Usuario {1} ha sido reportado con una averia asi que le pedimos resolver esta averia"
+                + " a un técnico lo mas rapido posible. <br><strong>Descripcion problema: </strong><br>{2}", equipoReportado.Nombre, nombreEncargadoEquipo, averia.Descripcion);
+
+            SendMailController email = new SendMailController(); //Esta clase gestiona la config necesaria para enviar msj
+            email.send(use, pass, host, port, emailTecnico, subject, body);
+            
+        }
 
         // GET: Averias/Edit/5
         public ActionResult Edit(int? id)

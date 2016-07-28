@@ -74,6 +74,16 @@ namespace Karepro.Migrations
             {
                 context.NivelUrgencia.Add(new NivelUrgencia { Nivel = "Alta" });
             }
+
+            if(!context.EstadoAveria.Any(u => u.Estado == "Resuelta"))
+            {
+                context.EstadoAveria.Add(new EstadoAveria { Estado = "Resuelta" });
+            }
+
+            if (!context.EstadoAveria.Any(u => u.Estado == "No Resuelta"))
+            {
+                context.EstadoAveria.Add(new EstadoAveria { Estado = "No Resuelta" });
+            }
         }
     }
 }

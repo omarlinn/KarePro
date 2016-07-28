@@ -180,6 +180,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607282233271_ljhk%27.cs" />
+    <Compile Include="Migrations\201607282233271_ljhk%27.Designer.cs">
+      <DependentUpon>201607282233271_ljhk%27.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Averia.cs" />
@@ -505,6 +509,11 @@
     <Content Include="Views\Institucions\Edit.cshtml" />
     <Content Include="Views\Institucions\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201607282233271_ljhk%27.resx">
+      <DependentUpon>201607282233271_ljhk%27.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
