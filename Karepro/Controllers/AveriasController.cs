@@ -86,7 +86,7 @@ namespace Karepro.Controllers
             var userId = User.Identity.GetUserId();
             //var um = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
 
-            if (User.IsInRole("Administrador") || User.IsInRole("Tecnico"))
+            if (User.IsInRole("Administrador"))
             {
                 var averias = from averia in db.Averias
                               orderby averia.Nivel_urgencia.IdUrgencia descending
@@ -94,7 +94,17 @@ namespace Karepro.Controllers
 
                 return View(averias.ToList());
             }
-                var ave = from misAverias in db.Averias
+
+            if (User.IsInRole("Tecnico"))
+            {
+                var averias = from a in db.Averias
+                              where a.IdTecnico == userId
+                              select a;
+
+                return View(averias.ToList());
+            }
+
+            var ave = from misAverias in db.Averias
                               join equipo in db.Equipos
                               on misAverias.IdEquipo equals equipo.IdEquipo
                               where equipo.IdUsuario == userId
@@ -119,6 +129,52 @@ namespace Karepro.Controllers
             return View(averia);
         }
 
+
+        public ActionResult Asignar(int id)
+        {
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+            var tenicosId = roleManager.FindByName("Tecnico").Users;
+            var tecnicos = new List<ApplicationUser>();
+
+            tenicosId.ToList().ForEach(e => tecnicos.Add(db.Users.Find(e.UserId)));
+            ViewBag.IdTecnico = new SelectList(tecnicos, "Id", "UserName");
+           // ViewBag.IdAveria = new SelectList(db.Averias.Find(id), "IdAveria", "IdAveria");
+
+            var averia = db.Averias.Find(id);
+
+            return View(new AsignarAveriaViewModel { idAveria = id, Averia = averia});
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public ActionResult Asignar(AsignarAveriaViewModel model)
+        {
+
+            var averia = db.Averias.Find(model.idAveria);
+            if (ModelState.IsValid)
+            {
+
+                averia.IdTecnico = model.idTecnico;
+
+                db.Entry(averia).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+            var tenicosId = roleManager.FindByName("Tecnico").Users;
+            var tecnicos = new List<ApplicationUser>();
+            var averias = new List<Averia>();
+            averias.Add(averia);
+
+            tenicosId.ToList().ForEach(e => tecnicos.Add(db.Users.Find(e.UserId)));
+            ViewBag.idTecnico = new SelectList(tecnicos, "Id", "UserName");
+            ViewBag.idAveria = new SelectList(averias, "IdAveria", "Descripcion");
+
+            return View(new AsignarAveriaViewModel { idAveria = averia.IdAveria, Averia = averia });
+
+        }
        
         public ActionResult Create()
         {
@@ -134,6 +190,7 @@ namespace Karepro.Controllers
             ViewBag.IdUrgencia = new SelectList(db.NivelUrgencia, "IdUrgencia", "Nivel");
             return View();
         }
+
 
   
         [HttpPost]

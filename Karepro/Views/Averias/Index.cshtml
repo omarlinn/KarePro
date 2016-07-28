@@ -38,9 +38,27 @@
         <td>
             @Html.DisplayFor(modelItem => item.Nivel_urgencia.Nivel)
         </td>
-        <td>
-            <button class="btn btn-primary btn-sm" id="@item.IdAveria">Reportar</button>
-        </td>
+        @{
+            if (User.IsInRole("Administrador"))
+            {
+
+                <td>
+                     @Html.ActionLink("Detalle", "Details", new { id = item.IdAveria })
+                    @{
+                        if (item.Tecnico == null)
+                        {
+                            @Html.ActionLink("Asignar a un tenico", "Asignar", new { id = item.IdAveria })
+                        }
+                        else
+                        {
+                            <a class="btn btn-primary btn-sm">Ya está asignada a un técnico</a>
+                        }
+                    }
+
+                </td>
+
+            }
+        }
     </tr>
 }
 

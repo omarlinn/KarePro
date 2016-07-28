@@ -20,6 +20,10 @@ namespace Karepro.Models
 
         public ICollection<Equipo> Equipos { get; set; }
 
+        //Este caso solo se aplica a los usuarios con rol Tecnico, puesto que son los unicos que 
+        //Pueden tener averias asignadas
+        public ICollection<Averia> Averias { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -110,6 +114,11 @@ namespace Karepro.Models
             modelBuilder.Entity<Averia>()
                         .HasRequired(e => e.Equipo)
                         .WithMany()
+                        .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Averia>()
+                        .HasOptional(e => e.Tecnico)
+                        .WithMany(e => e.Averias)
                         .WillCascadeOnDelete(false);
         }
     }
