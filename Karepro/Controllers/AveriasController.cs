@@ -7,6 +7,16 @@ using Karepro.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
+
+
+using System;
+using System.Collections.Generic;
+
+using System.Web;
+using System.Text;
+using System.Net.Mail;
+
+
 namespace Karepro.Controllers
 {
     [Authorize]
@@ -195,6 +205,60 @@ namespace Karepro.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+    }
+}
+
+
+
+
+namespace Karepro.Controllers
+{
+    public class SendMailController : Controller
+    {
+        // GET: SendMail
+        public ActionResult Index()
+        {
+
+            return View();
+        }
+        public bool send(string user, string pass, string host, int port, string toEmail, string subject, string body)
+        {
+            try
+            {
+                using (var stmClient = new SmtpClient())
+                {
+                    stmClient.EnableSsl = true;
+                    stmClient.Host = host;
+                    stmClient.Port = port;
+                    stmClient.UseDefaultCredentials = true;
+                    stmClient.Credentials = new NetworkCredential(user, pass);
+                    var msg = new MailMessage
+                    {
+
+                        IsBodyHtml = true,
+                        BodyEncoding = Encoding.UTF8,
+                        From = new MailAddress(user),
+                        Subject = subject,
+                        Body = body,
+                        Priority = MailPriority.Normal
+
+
+
+                    };
+                    msg.To.Add(toEmail);
+                    stmClient.Send(msg);
+                    return true;
+
+                }
+
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
         }
     }
 }

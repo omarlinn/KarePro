@@ -12,7 +12,7 @@ namespace Karepro.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(Karepro.Models.ApplicationDbContext context)
