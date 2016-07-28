@@ -148,9 +148,7 @@ namespace Karepro.Controllers
         {
 
             //Get the value from database and then set it to ViewBag to pass it View
-            ViewBag.IdInstitucion = new SelectList(db.Instituciones, "IdInstitucion", "Nombre");
-
-           
+            ViewBag.IdInstitucion = new SelectList(db.Instituciones.ToList(), "IdInstitucion", "Nombre");
             return View();
         }
 
@@ -166,7 +164,7 @@ namespace Karepro.Controllers
                 var user = new ApplicationUser {
                     UserName = model.UserName,
                     Email = model.Email,
-                    idInstitucion = model.idInstitucion,
+                    idInstitucion = model.IdInstitucion,
                     Name = model.Name,
                     LastName = model.LastName
                 };

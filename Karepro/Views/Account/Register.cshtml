@@ -62,9 +62,8 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.idInstitucion, "IdInstitucion", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownList("idInstitucion", null, htmlAttributes: new { @class = "form-control" })
+            <input  type="hidden" value=1 name="IdInstitucion" />
         </div>
     </div>
 

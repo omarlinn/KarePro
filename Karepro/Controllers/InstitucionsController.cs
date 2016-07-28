@@ -39,6 +39,7 @@ namespace Karepro.Controllers
         // GET: Institucions/Create
         public ActionResult Create()
         {
+            
             return View();
         }
 

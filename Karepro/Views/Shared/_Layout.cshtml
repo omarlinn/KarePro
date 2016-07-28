@@ -94,7 +94,7 @@
                             </a>
                             <ul class="treeview-menu">
                                 @{
-                                    if (User.IsInRole("Administrador"))
+                                    if (!User.IsInRole("Tecnico"))
                                     {
                                         <li><a href="~/Averias/Create">Agregar averias</a></li>
                                     }

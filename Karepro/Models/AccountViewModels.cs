@@ -84,7 +84,7 @@ namespace Karepro.Models
 
         [Required]
         [Display(Name = "Institucion")]
-        public int idInstitucion { get; set; }
+        public int IdInstitucion { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "EL {0} deberia tener al menos {2} caracteres", MinimumLength = 6)]
