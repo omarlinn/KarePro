@@ -1,4 +1,4 @@
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Web;
 using System.Text;
 using System.Net.Mail;
+
 
 namespace Karepro.Controllers
 {
@@ -69,12 +70,7 @@ namespace Karepro.Controllers
 
 
 
-using System;
-using System.Collections.Generic;
 
-using System.Web;
-using System.Text;
-using System.Net.Mail;
 
 
 namespace Karepro.Controllers
@@ -271,9 +267,6 @@ namespace Karepro.Controllers
 
 
 
-
-namespace Karepro.Controllers
-{
     public class SendMailController : Controller
     {
         // GET: SendMail
@@ -321,4 +314,4 @@ namespace Karepro.Controllers
 
         }
     }
-}
+
