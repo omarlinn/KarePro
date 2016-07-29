@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Karepro.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Karepro.Controllers
 {
@@ -40,12 +41,17 @@ namespace Karepro.Controllers
         // GET: Mantenimientos/Create
         public ActionResult Create()
         {
+            var userId = User.Identity.GetUserId();
+
+            var averias = from a in db.Averias
+                          where a.IdTecnico == userId
+                          where a.EstadoAveria == "No Resuelta"
+                          select a;
+
             ViewBag.IdInstitucion = new SelectList(db.Instituciones, "IdInstitucion", "Nombre");
             ViewBag.IdInsumo = new SelectList(db.Insumos, "IdInsumo", "Nombre");
-            ViewBag.IdAveria = new SelectList(db.Averias, "IdAveria", "Descripcion");
-            ViewBag.IdEstado = new SelectList(db.EstadoAveria, "IdEstado", "Estado");
-            //ViewBag.IdEstado = new SelectList(db.EstadoAveria, "IdEstado", "Estado");
-
+            ViewBag.IdAveria = new SelectList(averias, "IdAveria", "Descripcion");
+            
             return View();
         }
 
@@ -59,12 +65,22 @@ namespace Karepro.Controllers
             if (ModelState.IsValid)
             {
                 db.Mantenimientos.Add(mantenimiento);
+                var averia = db.Averias.Find(mantenimiento.IdAveria);
+                averia.EstadoAveria = "Resuelta";
+                db.Entry(averia).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Averias");
             }
 
-            //ViewBag.IdAveria = new SelectList(db.Averias, "IdAveria", "Tipo_averia", mantenimiento.IdAveria);
-            //ViewBag.IdInstitucion = new SelectList(db.Instituciones, "IdInstitucion", "Nombre", mantenimiento.IdInstitucion);
+            var userId = User.Identity.GetUserId();
+
+            var averias = from a in db.Averias
+                          where a.IdTecnico == userId
+                          where a.EstadoAveria == "No Resulta"
+                          select a;
+
+            ViewBag.IdAveria = new SelectList(db.Averias, "IdAveria", "Tipo_averia", mantenimiento.IdAveria);
+            ViewBag.IdInstitucion = new SelectList(db.Instituciones, "IdInstitucion", "Nombre", mantenimiento.IdInstitucion);
             return View(mantenimiento);
         }
 

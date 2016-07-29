@@ -100,9 +100,9 @@ namespace Karepro.Controllers
             {
                 var averias = from a in db.Averias
                               where a.IdTecnico == userId
+                              where a.EstadoAveria == "No Resuelta"
                               select a;
-
-
+                
                 return View(averias.ToList());
             }
 

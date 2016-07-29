@@ -30,27 +30,16 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr class="@Html.DisplayFor(modelItem => item.Estado.IdEstado)">
+    <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Averia.Descripcion)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tipo_mantenimiento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nivel_urgencia)
-        </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.Descripcion)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Institucion.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estado.Estado)
-        </td>
-        <td>
-            <button class="btn btn-primary btn-sm" id="@item.IdMantenimiento">Borrar</button>
         </td>
     </tr>
 }

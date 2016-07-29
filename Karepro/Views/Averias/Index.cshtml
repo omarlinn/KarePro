@@ -56,8 +56,15 @@
                     }
 
                 </td>
+                        }
 
-            }
+                        if (User.IsInRole("Tecnico"))
+                        {
+
+                            <td>
+                                <a class="btn btn-success" href="/Mantenimientos/Create">Dar mantemiento</a>
+                            </td>
+                                    }
         }
     </tr>
 }
